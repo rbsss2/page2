@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 function Youtube2() {
-  const { video, setVideo } = useState([]);
+  const [video, setVideo] = useState([]);
+
   const key = "AIzaSyDJHcqJgIk95lX-tGWkRNiCgCjpBB3UaS8";
   const playList = "PLnvQj3jMoenT8AcsYX6OJFPVdHIIR7YGs";
   const num = 2;
@@ -13,6 +14,11 @@ function Youtube2() {
 
   return (
     <>
+      {/* {video.map((vid) => (
+        <figure key={vid.snippet.position}>
+          <strong style={{ display: "block" }}>{vid.snippet.title}</strong>
+        </figure>
+      ))} */}
       {video.map((vid, idx) => {
         return (
           <figure
@@ -21,11 +27,11 @@ function Youtube2() {
           >
             <strong style={{ display: "block" }}>{vid.snippet.title}</strong>
             <img
-              src={vid.snippet.thumnails.medium.url}
+              src={vid.snippet.thumbnails.medium.url}
               alt={vid.snippet.title}
             />
             <iframe
-              src={`https://www.youtube.com/embed/${video.snippet.resourceId.videoId}8zCbmhl1Xns`}
+              src={`https://www.youtube.com/embed/${video[idx].snippet.resourceId.videoId}?controls=0`}
               frameborder="0"
               title={vid.snippet.title}
             ></iframe>
